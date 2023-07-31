@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TracerController;
+use App\Http\Controllers\BankSoalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::prefix('/tracer-study')->group(function () {
     Route::get('/status', [TracerController::class, 'status'])->name('status');
     Route::post('/proses-status', [TracerController::class, 'prosesStatus'])->name('proses-status');
 
-    Route::get('/view-soal/{status}', [TracerController::class, 'viewSoal'])->name('viewSoal');
-    Route::post('/proses-soal', [TracerController::class, 'prosesSoal'])->name('proses-soal');
+    Route::get('/view-soal/{number}', [TracerController::class, 'viewSoal'])->name('viewSoal');
+    Route::post('/proses-soal', [TracerController::class, 'storeSoal'])->name('prosesSoal');
 });
+
+
+Route::resource('/soal', BankSoalController::class);

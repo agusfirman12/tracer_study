@@ -1,26 +1,23 @@
 @if ($paginator->hasPages())
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-                    <button type="button" class="btn btn-warning">
-                        <a href="{{ route('status') }}" class="page-link bg-warning border-warning text-dark">Sebelumnya</a >
-                    </button>
+            <a href="{{ route('status') }}">
+                <button type="button" class="btn btn-warning">Sebelumnya</button>
+            </a>
             @else
-                    <button type="button" class="btn btn-warning">
-                        <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev">sebelumnya</a>
-                    </button>
+            <a href="{{ $paginator->previousPageUrl() }}">
+                <button type="button" class="btn btn-warning">Sebelumnya</button>
+            </a>
             @endif
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
-                    <button type="submit" class="btn btn-warning">
-                        <a class="page-link bg-warning border-warning text-dark" href="{{ $paginator->nextPageUrl() }}" rel="next">Selanjutnya</a>
-                    </button>
+            <button type="submit" class="btn btn-warning">
+                <a class="bg-warning border-warning text-dark" href="{{ $paginator->nextPageUrl() }}" rel="next">Selanjutnya</a>
+            </button>
             @else
-                <div class="page-item disabled" aria-disabled="true">
-                    <button type="submit" class="btn btn-warning">
-                        <a class="page-link bg-warning border-warning text-dark" href="{{ $paginator->nextPageUrl() }}" rel="next">Selanjutnya</a>
-                    </button>>
-                </div>
+            <a href="">
+                <button type="button" class="btn btn-danger ">Selesai</button>
+            </a>
             @endif
-        </div>
 @endif

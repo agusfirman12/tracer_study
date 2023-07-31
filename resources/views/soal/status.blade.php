@@ -1,7 +1,7 @@
 @extends('layouts.main')
 <style>
 .container{
-    margin-bottom: 130px;
+    height: 85vh;
 }
 
     .container .text-center {
@@ -50,7 +50,17 @@
             <h5>SMK Negeri Ihya'Ulumudin Singojuruh</h5>
         </div>
     </div>
-    
+    <div class="row d-flex justify-content-center">
+        <div class="col-4">
+            @if (session()->has('jawabanError')) 
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ session('jawabanError') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+        </div>
+    </div>
+
     <div class="row d-flex justify-content-center">
         <!-- Soal Pertama -->
         <div class="card w-75 text-center">

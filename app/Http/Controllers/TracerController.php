@@ -67,9 +67,14 @@ class TracerController extends Controller
             return redirect()->route('landing');
         }
 
+        if($request->status == null){
+            return back()->with('jawabanError', 'Silahkan Masukkan Jawaban Anda !!');
+        }
+
         $request->validate([
             'status' =>'required'
         ]);
+        $request->session()->put('status',$request->status);
 
         if(Tracer_answer::where('alumni_id',$data->id)->first() == !null){
             $answer = Tracer_answer::where('alumni_id', $data->id)->first();
@@ -80,8 +85,7 @@ class TracerController extends Controller
             $data->tracer_answer_id = $answer->id;
             $data->save();
 
-            $status = $request->status;
-            return redirect()->route('viewSoal',['status' =>  $status]);
+            return redirect()->route('viewSoal',['number' => 1]);
         }else if (Tracer_answer::where('alumni_id', $data->id)->first() == null) {
             $answer = new Tracer_answer();
             $answer->alumni_id = $data->id;
@@ -93,22 +97,49 @@ class TracerController extends Controller
             $data->tracer_answer_id = $answer->id;
             $data->save();
 
-            $status = $request->status;
-            return redirect()->route('viewSoal',['status' =>  $status->status]);
+            return redirect()->route('viewSoal',['number' => 1]);
         }
     }
 
-    public function viewSoal(Request $request,$status){
+    public function viewSoal(Request $request,$number){
         $data = $request->session()->get('userId');
+        $status = $request->session()->get('status');
         if ($data == null) {
             return redirect()->route('landing');
         }
+        
+        $soalChose = new BankSoalController();
+        $skip = $number-1;
+        $resultSoal = $soalChose->store($status,$skip);
 
-            $soal = bankSoal::where('type', $status)->simplePaginate(1)->withQueryString();
-            return view('soal/soal',['data' => $soal]);
+        $soalNumber = $number;
+        $soalNumber++;
+        $request->session()->put('number',$soalNumber);
+
+        foreach ($resultSoal as $idSoal) {
+            $request->session()->put('id_soal',$idSoal);
+        }
+        return view('soal/soal',['data' => $resultSoal,'number' => $soalNumber]);
     }
 
-    public function prosesSoal(Request $request){
-        dd($request);
+    public function storeSoal(Request $request){        
+        if($request->answer == null){
+            return back()->with('jawabanError', 'Silahkan Masukkan Jawaban Anda !!');
+        }
+        
+        $request->validate([
+            'answer' =>'required'
+        ]);
+
+        $number = $request->session()->get('number');
+        $noAnswer = $number-1;
+        $id_soal = 'soal'.$noAnswer;
+        $answer = [$id_soal => $request->answer];
+
+        $data = $request->session()->get('userId');
+        Tracer_answer::where('alumni_id',$data->id)->update($answer);
+
+
+        return redirect(route('viewSoal',['number' => $number]));
     }
 }
