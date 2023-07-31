@@ -33,6 +33,8 @@ Route::prefix('/tracer-study')->group(function () {
 
     Route::get('/view-soal/{number}', [TracerController::class, 'viewSoal'])->name('viewSoal');
     Route::post('/proses-soal', [TracerController::class, 'storeSoal'])->name('prosesSoal');
+    Route::get('/halaman-selesai', [TracerController::class, 'finish'])->name('finish');
+    Route::post('/proses-selesai', [TracerController::class, 'prosesSelesai'])->name('prosesSelesai');
 });
 
 

@@ -51,7 +51,6 @@
         </div>
     </div>    
     @foreach ($data as $key => $item)
-    @if ($item->soal != null)
 
     <div class="row d-flex justify-content-center">
       <div class="col-4">
@@ -63,7 +62,6 @@
           @endif
       </div>
     </div>
-{{ $data }}
 
     <div class="row d-flex justify-content-center">
         <!-- menampilkan soal -->
@@ -117,9 +115,6 @@
           </form>
         </div>
       </div>
-      @else
-      <h1 class="text-white">data kosong</h1>
-      @endif
       @endforeach
     </div>
     

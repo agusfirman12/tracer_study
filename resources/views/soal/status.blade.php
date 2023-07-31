@@ -100,9 +100,9 @@
             <!-- Tombol Previous dan Next -->
             <div class="card-footer d-flex justify-content-between">
             <a href="{{ route('profile') }}">
-                <button type="button" class="btn btn-warning">Previous</button>
+                <button type="button" class="btn btn-warning">Kembali</button>
             </a>
-                <button type="submit" class="btn btn-warning">Next</button>
+                <button type="submit" class="btn btn-warning">Selanjutnya</button>
             </div>
         </form>
         </div>

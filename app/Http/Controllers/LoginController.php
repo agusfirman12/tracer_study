@@ -46,20 +46,19 @@ class LoginController extends Controller
         //mengambil data sesiom apakah yang diminta sesuai
         $key = $request->session()->get('userId');
         //kita check di database apakah ada nimnya
-        $finish =  Tracer_answer::select('pengerjaan')->where('alumni_id', $key->id)->first();
+        $finish =  Tracer_answer::where('alumni_id', $key->id)->first();
 
         //bilah mana $finis  null maka kita membuat pengimputan data baru
-        if ($finish == null or $finish->status == null) {
+        if ($finish == null) {
             $key = $request->session()->get('userId');
             $result = Jurusan::where('id', $key->jurusan_id)->first();
             $request->session()->put('jurusan', $result);
             return redirect()->route('profile');
-        }
-        if ($finish->pengerjaan == 'finised') {
+        }elseif($finish->pengerjaan == 'finish') {
             //misalnya user melkukan pengisina maka akan dilempar ke menu login kembali 
             //kemudian dilakukan penghapusan session
             $request->session()->forget('key');
-            return redirect()->route('login-alumni')->with('loginError', 'Maaf Anda Telah Mengisi');
+            return redirect()->route('landing')->with('loginError', 'Maaf Anda Telah Mengisi');
         }
     }
 

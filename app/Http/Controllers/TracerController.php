@@ -119,7 +119,11 @@ class TracerController extends Controller
         foreach ($resultSoal as $idSoal) {
             $request->session()->put('id_soal',$idSoal);
         }
-        return view('soal/soal',['data' => $resultSoal,'number' => $soalNumber]);
+
+        if ($soalNumber-1 > bankSoal::where('type',$status)->count()) {
+            return redirect()->route('finish');
+        }
+        return view('soal/soal',['data' => $resultSoal,'number' => $soalNumber,'soal' =>$data]);
     }
 
     public function storeSoal(Request $request){        
@@ -141,5 +145,24 @@ class TracerController extends Controller
 
 
         return redirect(route('viewSoal',['number' => $number]));
+    }
+
+    public function finish(Request $request){
+        $user = $request->session()->get('userId');
+        return view('soal/finish',['user' => $user->name]);
+    }
+
+    public function prosesSelesai(Request $request){
+        $user = $request->session()->get('userId');
+
+        $request->validate([
+            'pengerjaan' => 'required'
+        ]);
+
+        $finish = Tracer_answer::where('alumni_id',$user->id)->first();
+        $finish->pengerjaan = $request->pengerjaan;
+        $finish->save();
+        
+        return redirect()->route('logout');
     }
 }
