@@ -6,7 +6,7 @@
         <img class="mb-4" src="{{ asset('assets/img/logo-img.png') }}" width="120px">
     </div>
     <div class="title text-center text-white">
-        <h2>Selamat Datang</h2>
+        <h2>Selamat Datang, {{ $user }}</h2>
         <h5>Di Sistem Lacak Alumni SMK Negeri Ihya'Ulumudin</h5>
     </div>
  
@@ -20,25 +20,26 @@
 
 
         <main class="form-signin bg-white px-3 py-4 rounded-3 shadow" style="margin-bottom: 90px">
-            <form action="{{ route('loginProcess') }}" method="post">
+            <form action="{{ route('loginAdmin') }}" method="post">
                 @csrf
                 <div class="d-flex justify-content-center">
-                    <h5>Silahkan Masukkan Nisn/Nik/Nis Anda</h5>
-                </div>
-                <div class="help justify-content-center d-flex mb-3 ">
-                    <small class="fst-italic">Jika Lupa Nisn silakan Lihat <a href="https://nisn.data.kemdikbud.go.id/index.php/Cindex/formcaribynama" target="blank"> Disini</a></small>
+                    <h6>Silahkan Masukkan Username/Password Anda</h6>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" name="nisn" class="form-control @error('nisn') is-invalid @enderror" id="floatingInput" placeholder="35xxxxxxx" required value="{{ old('nisn') }}">
-                    <label for="floatingInput">NISN/NIK/NIS</label>
-                    @error('nisn')
+                    <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="floatingInput" placeholder="35xxxxxxx" required value="{{ old('username') }}">
+                    <label for="floatingInput">Username</label>
+                    @error('username')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                <button class="w-100 btn btn-lg my-3 text-white shadow" style="background-color: #154286" type="submit">Mulai</button>
-                <div class="help justify-content-center d-flex mb-3 ">
-                    <small class="fst-italic">Login Admin Klik <a href="/login-admin" target="blank"> Disini</a></small>
+                <div class="form-floating mb-3">
+                    <input type="text" name="password" class="form-control @error('password') is-invalid @enderror" id="floatingInput" placeholder="35xxxxxxx" required value="{{ old('password') }}">
+                    <label for="floatingInput">Password</label>
+                    @error('password')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
+                <button class="w-100 btn btn-lg my-3 text-white shadow" style="background-color: #154286" type="submit">Login</button>
             </form>
         </main>
     </div>

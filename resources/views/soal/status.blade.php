@@ -61,7 +61,7 @@
         </div>
     </div>
 
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center mt-3">
         <!-- Soal Pertama -->
         <div class="card w-75 text-center">
             <form action="{{ route('proses-status') }}" method="post">
@@ -107,7 +107,5 @@
         </form>
         </div>
     </div>
-
-
   </div>
 @endsection

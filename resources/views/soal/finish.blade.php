@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 @section('container')
-<div class="d-flex justify-content-center">
-    <div class="alert alert-light  text-dark" role="alert">
+<div class="d-flex justify-content-center mt-5" style="margin-bottom: 400px;">
+    <div class="alert alert-light text-dark" role="alert">
     <h4 class="alert-heading">Well done! <br>Selamat {{ $user }} Pengisian Anda Tersimpan</h4>
     <p>Jangan Lupakan Dari Mana kamu berasal, jadilah kebanggan kami, semangat menjalani hidup</p>
     <hr>

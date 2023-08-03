@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TracerController;
 use App\Http\Controllers\BankSoalController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +17,35 @@ use App\Http\Controllers\BankSoalController;
 |
 */
 
-// login alumni route
+// Route Admin
+Route::get('/login-admin', [AdminController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/process-loginAdmin', [AdminController::class, 'processLogin'])->name('loginAdmin');
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+
+//Route Kondisi
+Route::get('/kondisi-alumni/{kondisi}', [AdminController::class, 'kondisiAlumni'])->name('kondisi-alumni');
+//End Route Kondisi
+
+//Route Lihat Alumni
+Route::get('/alumni/{jurusan}', [AdminController::class, 'viewAlumni'])->name('view-alumni');
+//End Lihat Alumni
+
+//route lihat jurusan
+Route::get('/jurusan', [AdminController::class, 'viewJurusan'])->name('view-jurusan');
+Route::get('/tambah-jurusan', [AdminController::class, 'addJurusan'])->name('add-jurusan');
+Route::post('/store-jurusan', [AdminController::class, 'ProcessAddJurusan'])->name('process-add-jurusan');
+Route::get('/ubah-jurusan/{id}', [AdminController::class, 'ubahJurusan'])->name('ubah-jurusan');
+Route::post('/update-jurusan/{id}', [AdminController::class, 'updtJurusan'])->name('update-jurusan');
+Route::get('/delete-jurusan/{id}', [AdminController::class, 'deleteJurusan'])->name('delete-jurusan');
+//end lihat jurusan
+
+// Login Alumni Route
 Route::get('/', [LoginController::class, 'loginPage'])->name('landing');
 Route::post('/loginProcess', [LoginController::class, 'loginProcess'])->name('loginProcess');
 Route::get('/process-login/auth', [LoginController::class, 'authenticateSiswa'])->name('auth-login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-// End login alumni route
+// End Login Alumni Route
 
 Route::prefix('/tracer-study')->group(function () {
     Route::get('/pofile', [TracerController::class, 'profile'])->name('profile');

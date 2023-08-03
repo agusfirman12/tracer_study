@@ -18,13 +18,13 @@ class BankSoalSeeder extends Seeder
             "soal" => "Saat Ini Anda Berkuliah Di Mana ?",
             "type" => "Kuliah",
             "answer1" => "Perguruan Tinggi Negeri",
-            "answer2" => "perguruan Tinggi Swsata",
+            "answer2" => "Perguruan Tinggi Swsata",
             "answer3" => "Sekolah Tinggi Kedinasan",
-            "answer4" => "lainya"
+            "answer4" => "Lainya"
         ]);
         DB::table('bank_soals')->insert([
             "soal" => "Apa alasan Anda melanjutkan studi? ",
-            "type" => "kuliah",
+            "type" => "Kuliah",
             "answer1" => "Tuntutan profesi",
             'answer2' => "Kesempatan beasiswa",
             "answer3" => "Prestasi",
@@ -32,15 +32,15 @@ class BankSoalSeeder extends Seeder
         ]);
         DB::table('bank_soals')->insert([
             "soal" => "Kapan anda melanjutkan studi setelah lulus ?",
-            "type" => "kuliah",
-            "answer1" => "tahun pertama kelulusan",
-            'answer2' => "tahun kedua setelah kelulusan",
-            "answer3" => "tahun ketiga setelah kelulusan",
-            "answer4" => "belum mendapatkan perkerjaan"
+            "type" => "Kuliah",
+            "answer1" => "Tahun pertama kelulusan",
+            'answer2' => "Tahun kedua setelah kelulusan",
+            "answer3" => "Tahun ketiga setelah kelulusan",
+            "answer4" => "Belum mendapatkan pekerjaan"
         ]);
         DB::table('bank_soals')->insert([
             "soal" => "Darimanakah sumber biaya studi lanjut anda?",
-            "type" => "kuliah",
+            "type" => "Kuliah",
             "answer1" => "Biaya sendiri",
             'answer2' => "Dibiayai perusahaan",
             "answer3" => "Beasiswa pemerintah",
@@ -49,26 +49,26 @@ class BankSoalSeeder extends Seeder
         DB::table('bank_soals')->insert([
             "soal" => "Seberapa erat hubungan bidang studi lanjutan anda dengan kompetensi keahlian anda semasa SMK?",
             "type" => "Kuliah",
-            "answer1" => "sangat erat",
+            "answer1" => "Sangat Erat",
             "answer2" => "Erat",
             "answer3" => "Kurang Erat",
-            "answer4" => "Tidak sama sekali"
+            "answer4" => "Tidak Sama Sekali"
         ]);
         DB::table('bank_soals')->insert([
             "soal" => "Bekerja Sebagai Apa Anda Saat Ini ? ",
             "type" => "karyawan",
-            "answer1" => "karyawan swasta",
-            "answer2" => "pns",
-            "answer3" => "karyawan",
-            "answer4" => "lainya"
+            "answer1" => "Karyawan Swasta",
+            "answer2" => "PNS",
+            "answer3" => "Karyawan",
+            "answer4" => "Lainya"
         ]);
         DB::table('bank_soals')->insert([
-            "soal" => "Kapan anda medapatkan perkerjaan setelah lulus ?",
+            "soal" => "Kapan anda medapatkan pekerjaan setelah lulus ?",
             "type" => "karyawan",
-            "answer1" => "tahun pertama kelulusan",
-            'answer2' => "tahun kedua setelah kelulusan",
-            "answer3" => "tahun ketiga setelah kelulusan",
-            "answer4" => "belum mendapatkan perkerjaan"
+            "answer1" => "Tahun pertama kelulusan",
+            'answer2' => "Tahun kedua setelah kelulusan",
+            "answer3" => "Tahun ketiga setelah kelulusan",
+            "answer4" => "Belum mendapatkan perkerjaan"
         ]);
 
         DB::table('bank_soals')->insert([
@@ -82,19 +82,19 @@ class BankSoalSeeder extends Seeder
         DB::table('bank_soals')->insert([
             "soal" => "Bidang wirausaha apa yang ada jalankan saat ini ? ",
             "type" => "wirausaha",
-            "answer1" => "bidang jasa",
-            'answer2' => "bidang makanan",
-            "answer3" => "bidang retail",
-            "answer4" => "lainya"
+            "answer1" => "Bidang Jasa",
+            'answer2' => "Bidang Makanan",
+            "answer3" => "Bidang Retail",
+            "answer4" => "Lainya"
         ]);
 
         DB::table('bank_soals')->insert([
             "soal" => "kesulitan apa yang membuat anda belum bekerja ? ",
             "type" => "belum bekerja",
-            "answer1" => "sulitnya mendapatkan informasi lowongan",
-            'answer2' => "transportasi",
-            "answer3" => "persaingan kerja yang ketat",
-            "answer4" => "lainya"
+            "answer1" => "Sulitnya mendapatkan informasi lowongan",
+            'answer2' => "Transportasi",
+            "answer3" => "Persaingan kerja yang ketat",
+            "answer4" => "Lainya"
         ]);
     }
 }
