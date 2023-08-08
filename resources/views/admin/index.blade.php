@@ -17,7 +17,7 @@
                 <div class="card full-height">
                     <div class="card-body shadow-sm">
                         <div class="card-title text-center"><h3>Data Alumni SMK Negeri Ihya Ulumudin</h3></div>
-                        <div class="card-category text-center">data alumni beserta kondisinya</div>
+                        <div class="card-category text-center">Data Alumni Beserta Kondisinya</div>
                         @empty($alumni)
                             <h3 class="text-center text-danger">Data Belum Tersedia</h3>
                         @endempty
@@ -32,11 +32,11 @@
                             </div>
                             <div class="px-2 pb-2 pb-md-0 text-center">
                                 <div id="circles-3"></div>
-                                <h6 class="fw-bold mt-3 mb-0">wirausaha</h6>
+                                <h6 class="fw-bold mt-3 mb-0">Wirausaha</h6>
                             </div>
                             <div class="px-2 pb-2 pb-md-0 text-center">
                                 <div id="circles-4"></div>
-                                <h6 class="fw-bold mt-3 mb-0">kuliah</h6>
+                                <h6 class="fw-bold mt-3 mb-0">Kuliah</h6>
                             </div>
                             </div>
                         </div>

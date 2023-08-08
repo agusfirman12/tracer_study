@@ -14,7 +14,7 @@
                     <div class="col-6">
                         <div class="row mt-2">
                             <div class="form-group">
-                                <h5>kode Jurusan <span class="text-danger">*</span></h5>
+                                <h5>Kode Jurusan <span class="text-danger">*</span></h5>
                                 <div class="controls">
                                     <input type="text" name="kode" class="form-control" required data-validation-required-message="This field is required"> </div>
                             </div>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             <div class="text-xs-right mt-3">
-                <button type="submit" class="btn btn-rounded btn-info">Simpan</button>
+                <button type="submit" class="btn btn-rounded btn-success">Simpan</button>
             </div>
         </form>
       </div>

@@ -6,7 +6,7 @@
         <img class="mb-4" src="{{ asset('assets/img/logo-img.png') }}" width="120px">
     </div>
     <div class="title text-center text-white">
-        <h2>Selamat Datang, {{ $user }}</h2>
+        <h2>Selamat Datang, Admin</h2>
         <h5>Di Sistem Lacak Alumni SMK Negeri Ihya'Ulumudin</h5>
     </div>
  

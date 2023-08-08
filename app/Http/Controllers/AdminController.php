@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\alumni;
 use App\Models\jurusan;
+use App\Models\bankSoal;
 use Illuminate\Http\Request;
 use App\Models\Tracer_answer;
 use Illuminate\Support\Facades\Auth;
@@ -94,17 +95,17 @@ class AdminController extends Controller
         return redirect()->route('view-jurusan');
     }
 
-    public function viewJurusan()
-    {
-        $jurusan['jurusan'] = Jurusan::all();
-        return view('admin.jurusan.index', $jurusan);
-    }
-
     public function deleteAlumni($id)
     {
         $deleteData = jurusan::find($id);
         $deleteData->delete();
         return redirect()->route('view-jurusan')->with('info', 'Data Berhasil Dihapus');
+    }
+
+    public function viewJurusan()
+    {
+        $jurusan['jurusan'] = Jurusan::all();
+        return view('admin.jurusan.index', $jurusan);
     }
 
     public function addJurusan()
@@ -153,6 +154,45 @@ class AdminController extends Controller
         $deleteData = jurusan::find($id);
         $deleteData->delete();
         return redirect()->route('view-jurusan')->with('info', 'Data Berhasil Dihapus');
+    }
+
+    public function lihatSoal()
+    {
+        $soals =bankSoal::all(); // Mengambil semua pertanyaan dari database
+        // dd($soals);
+        return view('admin.soals.view', ['soals' => $soals]);
+    }
+
+
+    public function AddSoal() {
+        return view('admin.soals.tambah');
+    }
+
+    public function soalStore(Request $request) {
+        // Validasi data yang diterima dari form
+        $this->validate($request, [
+            'soal' => 'required|string',
+            'type' => 'required|string',
+            'answer1' => 'required|string',
+            'answer2' => 'required|string',
+            'answer3' => 'required|string',
+            'answer4' => 'required|string',
+        ]);
+
+        // Membuat objek pertanyaan baru
+        $soals = new bankSoal();
+        $soals->soal = $request->input('soal');
+        $soals->type = $request->input('type');
+        $soals->answer1 = $request->input('answer1');
+        $soals->answer2 = $request->input('answer2');
+        $soals->answer3 = $request->input('answer3');
+        $soals->answer4 = $request->input('answer4');
+
+        // Menyimpan pertanyaan ke database
+        $soals->save();
+
+        return redirect()->route('lihat-soal')
+            ->with('success', 'Pertanyaan Tracer Study berhasil ditambahkan.');
     }
 
     public function showAlumniNotFinish (){

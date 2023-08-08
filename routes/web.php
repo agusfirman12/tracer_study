@@ -63,3 +63,9 @@ Route::prefix('/tracer-study')->group(function () {
 
 
 Route::resource('/soal', BankSoalController::class);
+
+// Route Admin create soal
+Route::get('/lihat-soal', [AdminController::class, 'lihatSoal'])->name('lihat-soal');
+Route::get('/tambah-soal', [AdminController::class, 'AddSoal'])->name('tambah-soal');
+
+

@@ -37,7 +37,7 @@
                 </div>
                 <button class="w-100 btn btn-lg my-3 text-white shadow" style="background-color: #154286" type="submit">Mulai</button>
                 <div class="help justify-content-center d-flex mb-3 ">
-                    <small class="fst-italic">Login Admin Klik <a href="/login-admin" target="blank"> Disini</a></small>
+                    <small class="fst-italic">Login Admin Klik <a href="{{ route('login') }}" target="blank"> Disini</a></small>
                 </div>
             </form>
         </main>

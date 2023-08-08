@@ -9,9 +9,9 @@
     </div>
     <table id="table" class="table table-bordered">
       <tr>
-        <th>kode jurusan</th>
-        <th>jurusan</th>
-        <th class="aksi">aksi</th>
+        <th>Kode Jurusan</th>
+        <th>Jurusan</th>
+        <th class="aksi">Aksi</th>
       </tr>
       @forelse($jurusan as $data) 
       <tr>
