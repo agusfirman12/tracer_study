@@ -102,10 +102,28 @@
             <a href="{{ route('profile') }}">
                 <button type="button" class="btn btn-warning">Kembali</button>
             </a>
-                <button type="submit" class="btn btn-warning">Selanjutnya</button>
+                <button type="submit" id="nextButton" class="btn btn-warning">Selanjutnya</button>
             </div>
         </form>
         </div>
     </div>
   </div>
+
+  {{-- onclick js --}}
+  <script>
+    const  nextButton = document.getElementById('nextButton');
+    const  jawabanA = document.getElementById('jawabanA');
+    const  jawabanB = document.getElementById('jawabanB');
+    const  jawabanC = document.getElementById('jawabanC');
+    const  jawabanD = document.getElementById('jawabanD');
+
+    function nextPage(){
+      nextButton.click();
+    }
+
+    jawabanA.onclick = nextPage;
+    jawabanB.onclick = nextPage;
+    jawabanC.onclick = nextPage;
+    jawabanD.onclick = nextPage;
+  </script>
 @endsection

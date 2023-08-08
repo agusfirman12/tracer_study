@@ -21,7 +21,7 @@ use App\Http\Controllers\AdminController;
 Route::get('/login-admin', [AdminController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/process-loginAdmin', [AdminController::class, 'processLogin'])->name('loginAdmin');
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard')->middleware('auth');
-Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
+Route::get('/logout-admin', [AdminController::class, 'logout'])->name('logout-admin');
 
 //Route Kondisi
 Route::get('/kondisi-alumni/{kondisi}', [AdminController::class, 'kondisiAlumni'])->name('kondisi-alumni');
@@ -39,6 +39,15 @@ Route::get('/ubah-jurusan/{id}', [AdminController::class, 'ubahJurusan'])->name(
 Route::post('/update-jurusan/{id}', [AdminController::class, 'updtJurusan'])->name('update-jurusan');
 Route::get('/delete-jurusan/{id}', [AdminController::class, 'deleteJurusan'])->name('delete-jurusan');
 //end lihat jurusan
+
+// Route Admin create soal
+Route::get('/lihat-soal', [AdminController::class, 'viewSoal'])->name('lihatSoal');
+Route::get('/tambah-soal', [AdminController::class, 'AddSoal'])->name('tambah-soal');
+Route::get('/edit-soal/{id}', [AdminController::class, 'editSoal'])->name('edit-soal');
+Route::post('/update-soal/{id}', [AdminController::class, 'updtSoal'])->name('update-soal');
+
+
+
 
 // Login Alumni Route
 Route::get('/', [LoginController::class, 'loginPage'])->name('landing');
@@ -64,8 +73,5 @@ Route::prefix('/tracer-study')->group(function () {
 
 Route::resource('/soal', BankSoalController::class);
 
-// Route Admin create soal
-Route::get('/lihat-soal', [AdminController::class, 'lihatSoal'])->name('lihat-soal');
-Route::get('/tambah-soal', [AdminController::class, 'AddSoal'])->name('tambah-soal');
 
 

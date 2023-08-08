@@ -8,7 +8,7 @@
     </button>
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
-        <a class="nav-link px-5 text-white" href="{{ route('logout') }}">Sign out</a>
+        <a class="nav-link px-5 text-white" href="{{ route('logout-admin') }}">Sign out</a>
       </div>
     </div>
   </header>
@@ -58,7 +58,7 @@
                 Data Soal
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('lihat-soal') }}">Lihat Soal</a></li>
+                <li><a class="dropdown-item" href="{{ route('lihatSoal') }}">Lihat Soal</a></li>
                 <li><a class="dropdown-item" href="{{ route('tambah-soal') }}">Tambah Soal</a></li>
               </ul>
             </li>

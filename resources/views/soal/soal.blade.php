@@ -110,7 +110,7 @@
                 <button type="button" class="btn btn-warning">Kembali</button>
               </a>
               @endif
-                  <button type="submit" class="btn btn-warning">Selanjutnya</button>
+                  <button type="submit" id="nextButton" class="btn btn-warning">Selanjutnya</button>
               </div>
           </form>
         </div>
@@ -159,4 +159,20 @@
     </div>
   </div>
   {{--end modal finish--}}
+
+   {{-- onclick js --}}
+   <script>
+    const  nextButton = document.getElementById('nextButton');
+    const  ansewer1= document.getElementById('ansewer1');
+    const  answer2 = document.getElementById('answer2');
+    const  answer3 = document.getElementById('answer3');
+
+    function nextPage(){
+      nextButton.click();
+    }
+
+    answer1.onclick = nextPage;
+    answer2.onclick = nextPage;
+    answer3.onclick = nextPage;
+  </script>
 @endsection

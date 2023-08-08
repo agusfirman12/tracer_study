@@ -31,13 +31,13 @@ class AdminController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        Auth::logout(); 
 
         request()->session()->invalidate();
 
         request()->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login-admin');
     }
 
     public function dashboard(Request $request)
@@ -156,11 +156,10 @@ class AdminController extends Controller
         return redirect()->route('view-jurusan')->with('info', 'Data Berhasil Dihapus');
     }
 
-    public function lihatSoal()
+    public function viewSoal() 
     {
-        $soals =bankSoal::all(); // Mengambil semua pertanyaan dari database
-        // dd($soals);
-        return view('admin.soals.view', ['soals' => $soals]);
+        $soals['soals'] =bankSoal::all(); // Mengambil semua pertanyaan dari database
+        return view('admin.soals.index', $soals);
     }
 
 
@@ -193,6 +192,27 @@ class AdminController extends Controller
 
         return redirect()->route('lihat-soal')
             ->with('success', 'Pertanyaan Tracer Study berhasil ditambahkan.');
+    }
+
+    public function editSoal($id)
+    {
+        $soals['soal'] = bankSoal::find($id);
+        return view('admin.soals.edit', $soals);
+    }
+
+    public function updtSoal(Request $request, $id)
+    {
+        $request->validate([
+            'kode' => 'required|max:5',
+            'jurusan' => 'required'
+        ]);
+
+        $data = jurusan::find($id);
+        $data->kode_jurusan = $request->kode;
+        $data->nama_jurusan =  $request->jurusan;
+        $data->save();
+
+        return redirect()->route('view-jurusan');
     }
 
     public function showAlumniNotFinish (){
