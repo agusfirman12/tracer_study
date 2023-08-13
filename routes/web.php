@@ -40,14 +40,6 @@ Route::post('/update-jurusan/{id}', [AdminController::class, 'updtJurusan'])->na
 Route::get('/delete-jurusan/{id}', [AdminController::class, 'deleteJurusan'])->name('delete-jurusan');
 //end lihat jurusan
 
-// Route Admin create soal
-Route::get('/lihat-soal', [AdminController::class, 'viewSoal'])->name('lihatSoal');
-Route::get('/tambah-soal', [AdminController::class, 'AddSoal'])->name('tambah-soal');
-Route::get('/edit-soal/{id}', [AdminController::class, 'editSoal'])->name('edit-soal');
-Route::post('/update-soal/{id}', [AdminController::class, 'updtSoal'])->name('update-soal');
-
-
-
 
 // Login Alumni Route
 Route::get('/', [LoginController::class, 'loginPage'])->name('landing');
@@ -72,6 +64,22 @@ Route::prefix('/tracer-study')->group(function () {
 
 
 Route::resource('/soal', BankSoalController::class);
+
+// Route Admin create soal
+Route::get('/lihat-soal', [AdminController::class, 'lihatSoal'])->name('lihat-soal');
+Route::get('/tambah-soal', [AdminController::class, 'AddSoal'])->name('tambah-soal');
+Route::post('/store-soal', [AdminController::class, 'soalStore'])->name('proses-add-soal');
+Route::get('/edit-soal/{id}', [AdminController::class, 'editSoal'])->name('edit-soal');
+Route::post('/update-soal/{id}', [AdminController::class, 'updateSoal'])->name('update-soal');
+Route::get('/delete-soal/{id}', [AdminController::class, 'deleteSoal'])->name('delete-soal');
+
+Route::get('/admin/alumni/traced', [AdminController::class, 'AlumniTraced'])->name('admin.alumni.traced');
+Route::get('/admin/alumni/not_traced',  [AdminController::class, 'AlumniNotTraced'])->name('admin.alumni.not_traced');
+Route::get('/admin/alumni/all', [AdminController::class, 'showAllAlumni'])->name('admin.alumni.all');
+
+// Route::get('/admin/alumni/status/{status}', [AdminController::class, 'showAlumniByStatus'])->name('admin.alumni.status');
+
+
 
 
 

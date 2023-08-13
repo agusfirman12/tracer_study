@@ -42,20 +42,20 @@ class LoginController extends Controller
 
     public function authenticateSiswa(Request $request)
     {
-        // pertama kita check dulu apak user benar belum pernah mengisi
-        //mengambil data sesiom apakah yang diminta sesuai
+        // pertama kita check dulu apakah user benar belum pernah mengisi
+        //mengambil data sesion apakah yang diminta sesuai
         $key = $request->session()->get('userId');
         //kita check di database apakah ada nimnya
         $finish =  Tracer_answer::where('alumni_id', $key->id)->first();
 
-        //bilah mana $finis  null maka kita membuat pengimputan data baru
+        //bila mana $finis  null maka kita membuat pengimputan data baru
         if ($finish == null) {
             $key = $request->session()->get('userId');
             $result = Jurusan::where('id', $key->jurusan_id)->first();
             $request->session()->put('jurusan', $result);
             return redirect()->route('profile');
         }elseif($finish->pengerjaan == 'finish') {
-            //misalnya user melkukan pengisina maka akan dilempar ke menu login kembali 
+            //misalnya user melakukan pengisian maka akan dilempar ke menu login kembali 
             //kemudian dilakukan penghapusan session
             $request->session()->forget('key');
             return redirect()->route('landing')->with('loginError', 'Maaf Anda Telah Mengisi');

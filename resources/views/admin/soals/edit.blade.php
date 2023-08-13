@@ -1,38 +1,55 @@
-@extends('admin.layouts.main')
+@extends('admin.layouts.main') 
 
 @section('container')
-<div class="content-wrapper">
-    <div class="container mt-3">
-      <div class="box-header with-border">
-        <h3 class="box-title">Tambah Data Jurusan</h3>
-      </div>
+<div class="container">
+    <div class="row justify-content-between mt-3">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Edit Pertanyaan Tracer Study</div>
 
-      <div class="main-section">
-        <form method="post" action="{{ route('update-jurusan',$jurusan->id) }}">
-            @csrf
-                <div class="row mt-5">
-                    <div class="col-6">
-                        <div class="row mt-2">
-                            <div class="form-group">
-                                <h5>kode Jurusan <span class="text-danger">*</span></h5>
-                                <div class="controls">
-                                    <input type="text" name="kode" class="form-control" required data-validation-required-message="This field is required" value="{{ $jurusan->kode_jurusan }}"> </div>
-                            </div>
+                <div class="card-body">
+                    @if (session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+
+                    <form action="{{ route('update-soal', $soal->id) }}" method="POST">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="soal">Teks Pertanyaan</label>
+                            <textarea id="soal" class="form-control" name="soal" required></textarea>
                         </div>
-                        <div class="row mt-2">
-                            <div class="form-group">
-                                <h5>Nama Jurusan<span class="text-danger">*</span></h5>
-                                <div class="controls">
-                                    <input type="text" name="jurusan" class="form-control" required data-validation-required-message="This field is required" value="{{ $jurusan->nama_jurusan }}"> </div>
-                            </div>
+
+                        <div class="form-group">
+                            <label for="type">Tipe Soal</label>
+                            <textarea id="type" class="form-control" name="type" required></textarea>
                         </div>
-                    </div>
+
+                        <div class="form-group">
+                            <label for="answer1">Jawaban A</label>
+                            <input type="text" id="answer1" class="form-control " name="answer1" required value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="answer2">Jawaban B</label>
+                            <input type="text" id="answer2" class="form-control" name="answer2" required value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="answer3">Jawaban C</label>
+                            <input type="text" id="answer3" class="form-control" name="answer3" required value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="answer4">Jawaban D</label>
+                            <input type="text" id="answer4" class="form-control" name="answer4" required value="">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary mt-3">Update Pertanyaan</button>
+                    </form>
                 </div>
-            <div class="text-xs-right mt-3">
-                <button type="submit" class="btn btn-rounded btn-info">Simpan</button>
             </div>
-        </form>
-      </div>
+        </div>
     </div>
-  </div>
+</div>
 @endsection

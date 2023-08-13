@@ -156,10 +156,11 @@ class AdminController extends Controller
         return redirect()->route('view-jurusan')->with('info', 'Data Berhasil Dihapus');
     }
 
-    public function viewSoal() 
+    public function lihatSoal()
     {
-        $soals['soals'] =bankSoal::all(); // Mengambil semua pertanyaan dari database
-        return view('admin.soals.index', $soals);
+        $soals =bankSoal::all(); // Mengambil semua pertanyaan dari database
+        // dd($soals);
+        return view('admin.soals.view', ['soals' => $soals]);
     }
 
 
@@ -196,33 +197,78 @@ class AdminController extends Controller
 
     public function editSoal($id)
     {
-        $soals['soal'] = bankSoal::find($id);
-        return view('admin.soals.edit', $soals);
+        $soals = bankSoal::findOrFail($id);
+        return view('admin.soals.edit', ['soal' => $soals]);
     }
 
-    public function updtSoal(Request $request, $id)
+    public function updateSoal(Request $request, $id)
     {
-        $request->validate([
-            'kode' => 'required|max:5',
-            'jurusan' => 'required'
+
+        // Validasi data yang diterima dari form
+        $this->validate($request, [
+            'soal' => 'required|string',
+            'type' => 'required|string',
+            'answer1' => 'required|string',
+            'answer2' => 'required|string',
+            'answer3' => 'required|string',
+            'answer4' => 'required|string',
         ]);
 
-        $data = jurusan::find($id);
-        $data->kode_jurusan = $request->kode;
-        $data->nama_jurusan =  $request->jurusan;
-        $data->save();
+        // Membuat objek pertanyaan baru
+        $soals = bankSoal::findOrFail($id);
+        $soals->soal = $request->input('soal');
+        $soals->type = $request->input('type');
+        $soals->answer1 = $request->input('answer1');
+        $soals->answer2 = $request->input('answer2');
+        $soals->answer3 = $request->input('answer3');
+        $soals->answer4 = $request->input('answer4');
 
-        return redirect()->route('view-jurusan');
+        // Menyimpan pertanyaan ke database
+        $soals->save();
+
+        return redirect()->route('lihat-soal')
+            ->with('success', 'Pertanyaan Tracer Study berhasil diperbarui.');
     }
 
-    public function showAlumniNotFinish (){
+    public function deleteSoal($id)
+    {
+        $soals = bankSoal::findOrFail($id);
+        $soals->delete();
 
+        return redirect()->route('lihat-soal')
+            ->with('success', 'Pertanyaan Tracer Study berhasil dihapus.');
     }
 
-    public function showAlumniFinish (){
+    public function alumniTraced()
+    {
+        $alumniTraced = alumni::whereNotNull('tracer_answer_id')->get();
+        return view('admin.soals.alumni_traced', ['alumniTraced' => $alumniTraced]);
+    }
 
+    public function alumniNotTraced()
+    {
+        $alumniNotTraced = alumni::whereNull('tracer_answer_id')->get();
+        return view('admin.soals.alumni_not_traced', ['alumniNotTraced' => $alumniNotTraced]);
     }
-    public function showAlumnniYear (){
-        
+
+    public function showAllAlumni()
+    {
+        $alumniTraced = alumni::whereNotNull('tracer_answer_id')->get();
+        $alumniNotTraced = alumni::whereNull('tracer_answer_id')->get();
+
+        return view('admin.soals.all_alumni', [
+            'alumniTraced' => $alumniTraced,
+            'alumniNotTraced' => $alumniNotTraced,
+        ]);
     }
+
+    // public function showAlumniByStatus($status)
+    // {
+    //     $alumniByStatus = alumni::where('tracer_answer_id', $status)->get();
+
+    //     return view('admin.soals.alumni_by_status', [
+    //         'alumniByStatus' => $alumniByStatus,
+    //         'status' => $status,
+    //     ]);
+    // }
 }
