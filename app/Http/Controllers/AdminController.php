@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\alumni;
-use App\Models\jurusan;
+use App\Models\major;
+use App\Models\student;
 use App\Models\bankSoal;
 use Illuminate\Http\Request;
 use App\Models\Tracer_answer;
@@ -42,16 +42,18 @@ class AdminController extends Controller
 
     public function dashboard(Request $request)
     {
-        $viewAlumni = alumni::latest()->paginate(5);
-        $alumni = alumni::count();
-        $bekerja = Tracer_answer::where('soal1', 'Bekerja (fulltime/part time)')->count();
-        $wirausaha = Tracer_answer::where('soal1', 'Wiraswasta')->count();
-        $kuliah = Tracer_answer::where('soal1', 'Melanjutkan Pendidikan')->count();
+        $viewStudent = student::latest()->paginate(5);
+        $student = student::count();
+        $bekerja = Tracer_answer::where('status', 'karyawan')->count();
+        $belumBekerja = Tracer_answer::where('status', 'belum bekerja')->count();
+        $wirausaha = Tracer_answer::where('status', 'wirausaha')->count();
+        $kuliah = Tracer_answer::where('status', 'kuliah')->count();
 
         return view('admin.index', [
-            'viewAlumni' => $viewAlumni,
-            'alumni' => $alumni,
+            'viewStudent' => $viewStudent,
+            'student' => $student,
             'bekerja' => $bekerja,
+            'belumBekerja' => $belumBekerja,
             'wirausaha' => $wirausaha,
             'kuliah' => $kuliah
 
@@ -60,36 +62,36 @@ class AdminController extends Controller
 
     public function kondisiAlumni($kondisi)
     {
-        $alumni = Tracer_answer::where('soal1', $kondisi)->paginate(10);
-        return view('admin.kondisi.index', ['alumni' => $alumni, 'kondisi' => $kondisi]);
+        $student = Tracer_answer::where('status', $kondisi)->paginate(10);
+        return view('admin.kondisi.index', ['student' => $student, 'kondisi' => $kondisi]);
     }
 
-    public function viewAlumni($jurusan)
+    public function viewAlumni($major)
     {
 
-        $alumni['alumni'] = alumni::where('jurusan_id', $jurusan)->paginate(10);
-        $title['title'] = jurusan::where('id', $jurusan)->get();
-        return view('admin.alumni.index', $alumni, $title);
+        $student['student'] = student::where('major_id', $major)->paginate(10);
+        $title['title'] = major::where('id', $major)->get();
+        return view('admin.alumni.index', $student, $title);
     }
 
 
     public function ubahAlumni($id)
     {
-        $alumni['alumni'] = alumni::find($id);
-        return view('admin.jurusan.ubah', $alumni);
+        $student['student'] = student::find($id);
+        return view('admin.jurusan.ubah', $student);
     }
 
 
     public function updtAlumni(Request $request, $id)
     {
         $request->validate([
-            'kode' => 'required|max:5',
-            'jurusan' => 'required'
+            'code_major' => 'required|max:5',
+            'name_major' => 'required'
         ]);
 
-        $data = jurusan::find($id);
-        $data->kode_jurusan = $request->kode;
-        $data->nama_jurusan =  $request->jurusan;
+        $data = major::find($id);
+        $data->code_major = $request->code_major;
+        $data->name_major = $request->name_major;
         $data->save();
 
         return redirect()->route('view-jurusan');
@@ -97,15 +99,15 @@ class AdminController extends Controller
 
     public function deleteAlumni($id)
     {
-        $deleteData = jurusan::find($id);
+        $deleteData = major::find($id);
         $deleteData->delete();
         return redirect()->route('view-jurusan')->with('info', 'Data Berhasil Dihapus');
     }
 
     public function viewJurusan()
     {
-        $jurusan['jurusan'] = Jurusan::all();
-        return view('admin.jurusan.index', $jurusan);
+        $major['major'] = major::all();
+        return view('admin.jurusan.index', $major);
     }
 
     public function addJurusan()
@@ -116,13 +118,13 @@ class AdminController extends Controller
     public function ProcessAddJurusan(Request $request)
     {
         $request->validate([
-            'kode' => 'required|max:5',
-            'jurusan' => 'required'
+            'code_major' => 'required|max:5',
+            'name_major' => 'required'
         ]);
 
-        $data = new jurusan();
-        $data->kode_jurusan = $request->kode;
-        $data->nama_jurusan =  $request->jurusan;
+        $data = new major();
+        $data->code_major = $request->code_major;
+        $data->name_major = $request->name_major;
         $data->save();
 
         return redirect()->route('view-jurusan');
@@ -130,20 +132,20 @@ class AdminController extends Controller
 
     public function ubahJurusan($id)
     {
-        $jurusan['jurusan'] = jurusan::find($id);
-        return view('admin.jurusan.ubah', $jurusan);
+        $major['major'] = major::find($id);
+        return view('admin.jurusan.ubah', $major);
     }
 
     public function updtJurusan(Request $request, $id)
     {
         $request->validate([
-            'kode' => 'required|max:5',
-            'jurusan' => 'required'
+            'code_major' => 'required|max:5',
+            'name_major' => 'required'
         ]);
 
-        $data = jurusan::find($id);
-        $data->kode_jurusan = $request->kode;
-        $data->nama_jurusan =  $request->jurusan;
+        $data = major::find($id);
+        $data->code_major = $request->code_major;
+        $data->name_major = $request->name_major;
         $data->save();
 
         return redirect()->route('view-jurusan');
@@ -151,7 +153,7 @@ class AdminController extends Controller
 
     public function deleteJurusan($id)
     {
-        $deleteData = jurusan::find($id);
+        $deleteData = major::find($id);
         $deleteData->delete();
         return redirect()->route('view-jurusan')->with('info', 'Data Berhasil Dihapus');
     }
@@ -241,34 +243,24 @@ class AdminController extends Controller
 
     public function alumniTraced()
     {
-        $alumniTraced = alumni::whereNotNull('tracer_answer_id')->get();
-        return view('admin.soals.alumni_traced', ['alumniTraced' => $alumniTraced]);
+        $alumniTraced = student::whereNotNull('tracer_answer_id')->get();
+        return view('admin.alumni.alumni_traced', ['alumniTraced' => $alumniTraced]);
     }
 
     public function alumniNotTraced()
     {
-        $alumniNotTraced = alumni::whereNull('tracer_answer_id')->get();
-        return view('admin.soals.alumni_not_traced', ['alumniNotTraced' => $alumniNotTraced]);
+        $alumniNotTraced = student::whereNull('tracer_answer_id')->get();
+        return view('admin.alumni.alumni_not_traced', ['alumniNotTraced' => $alumniNotTraced]);
     }
 
     public function showAllAlumni()
     {
-        $alumniTraced = alumni::whereNotNull('tracer_answer_id')->get();
-        $alumniNotTraced = alumni::whereNull('tracer_answer_id')->get();
+        $alumniTraced = student::whereNotNull('tracer_answer_id')->get();
+        $alumniNotTraced = student::whereNull('tracer_answer_id')->get();
 
-        return view('admin.soals.all_alumni', [
+        return view('admin.alumni.all_alumni', [
             'alumniTraced' => $alumniTraced,
             'alumniNotTraced' => $alumniNotTraced,
         ]);
     }
-
-    // public function showAlumniByStatus($status)
-    // {
-    //     $alumniByStatus = alumni::where('tracer_answer_id', $status)->get();
-
-    //     return view('admin.soals.alumni_by_status', [
-    //         'alumniByStatus' => $alumniByStatus,
-    //         'status' => $status,
-    //     ]);
-    // }
 }

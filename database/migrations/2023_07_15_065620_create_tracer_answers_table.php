@@ -15,7 +15,7 @@ class CreateTracerAnswersTable extends Migration
     {
         Schema::create('tracer_answers', function (Blueprint $table) {
             $table->id();
-            $table->char('alumni_id', 10);
+            $table->char('student_id', 10);
             $table->char('nisn', 20);
             $table->string('status')->nullable();
             $table->string('soal1')->nullable();

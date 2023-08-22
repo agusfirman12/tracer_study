@@ -3,7 +3,7 @@
 @section('container')
 <div class="container">
     <div class="row justify-content-center mt-3">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Semua Alumni</div>
 
@@ -24,18 +24,13 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $alumni->nisn }}</td>
-                                    <td>{{ $alumni->name }}</td>
-                                    <td>{{ $alumni->nomer }}</td>
-                                    <td>{{ $alumni->tahun_lulus }}</td>
+                                    <td>{{ $alumni->full_name }}</td>
+                                    <td>{{ $alumni->mobile_phone }}</td>
+                                    <td>{{ $alumni->end_date }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- <ul>
-                        @foreach ($alumniTraced as $alumni)
-                            <li>{{ $alumni->name }}</li>
-                        @endforeach
-                    </ul> --}}
 
                     <h3>Alumni yang Belum Melakukan Tracer</h3>
                     <table class="table">
@@ -53,18 +48,13 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $alumni->nisn }}</td>
-                                    <td>{{ $alumni->name }}</td>
-                                    <td>{{ $alumni->nomer }}</td>
-                                    <td>{{ $alumni->tahun_lulus }}</td>
+                                    <td>{{ $alumni->full_name }}</td>
+                                    <td>{{ $alumni->mobile_phone }}</td>
+                                    <td>{{ $alumni->end_date }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- <ul>
-                        @foreach ($alumniNotTraced as $alumni)
-                            <li>{{ $alumni->name }}</li>
-                        @endforeach
-                    </ul> --}}
                 </div>
             </div>
         </div>

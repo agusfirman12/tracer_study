@@ -18,7 +18,7 @@
                     <div class="card-body shadow-sm">
                         <div class="card-title text-center"><h3>Data Alumni SMK Negeri Ihya Ulumudin</h3></div>
                         <div class="card-category text-center">Data Alumni Beserta Kondisinya</div>
-                        @empty($alumni)
+                        @empty($student)
                             <h3 class="text-center text-danger">Data Belum Tersedia</h3>
                         @endempty
                         <div class="d-flex flex-wrap justify-content-around pb-2 pt-4 mt-4">
@@ -38,6 +38,10 @@
                                 <div id="circles-4"></div>
                                 <h6 class="fw-bold mt-3 mb-0">Kuliah</h6>
                             </div>
+                            <div class="px-2 pb-2 pb-md-0 text-center">
+                                <div id="circles-5"></div>
+                                <h6 class="fw-bold mt-3 mb-0">Belum Bekerja</h6>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -55,26 +59,19 @@
                               <th>Jurusan</th> 
                               <th>Tahun Lulus</th>
                               <th>Status</th>
-                              <th>Pendapatan</th>
                             </tr>
-                            @forelse($viewAlumni as $data) 
+                            @forelse($viewStudent as $data) 
                             <tr>
-                                <td>{{ $data->nisn }}</td>
-                                <td>{{$data->name}}</td>
+                                <td>{{$data->nisn }}</td>
+                                <td>{{$data->full_name}}</td>
                                 <td>{{$data->email}}</td>
-                                <td>{{$data->nomer}}</td>
-                                <td>{{$data->jurusan->nama_jurusan}}</td>
-                                <td>{{$data->tahun_lulus}}</td>
+                                <td>{{$data->mobile_phone}}</td>
+                                <td>{{$data->major->name_major}}</td>
+                                <td>{{$data->end_date}}</td>
                                 @if ($data->tracer_answer === null)
                                     <td>Belum Diketahui</td>
                                 @else
-                                    <td>{{ $data->tracer_answer->soal1 }}</td>
-                                @endif
-                            
-                                @if ($data->tracer_answer === null)
-                                    <td>Belum Diketahui</td>
-                                @else
-                                    <td>Rp. {{ $data->tracer_answer->soal6 }}</td>
+                                    <td>{{ $data->tracer_answer->status }}</td>
                                 @endif
                             </tr>
                             @empty
@@ -85,7 +82,7 @@
                           </table>
                     </div>
                       <div class="d-flex justify-content-center" id="paginate">                        
-                          {{ $viewAlumni->links() }}
+                          {{ $viewStudent->links() }}
                       </div>
                 </div>
                 <div class="d-grid gap-2 col-6 mx-auto mt-3 mb-3">
@@ -109,7 +106,7 @@
         value:100,
         maxValue:100,
         width:7,
-        text: <?php echo $alumni ?>,
+        text: <?php echo $student ?>,
         colors:['#e36a02', '#020073'],
         duration:400,
         wrpClass:'circles-wrp',
@@ -156,6 +153,20 @@
         maxValue:100,
         width:7,
         text: <?php echo $kuliah ?>,
+        colors:['#e36a02', '#020073'],
+        duration:400,
+        wrpClass:'circles-wrp',
+        textClass:'circles-text',
+        styleWrapper:true,
+        styleText:true
+    })
+    Circles.create({
+        id:'circles-5',
+        radius:45,
+        value:100,
+        maxValue:100,
+        width:7,
+        text: <?php echo $belumBekerja ?>,
         colors:['#e36a02', '#020073'],
         duration:400,
         wrpClass:'circles-wrp',

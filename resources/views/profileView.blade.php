@@ -10,8 +10,8 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="upload pt-3">
-            @if ($data->foto)
-            <img src="{{ asset('storage/'.$data->foto) }}" class=" img-thumbnail img-fluid rounded-circle" width="120" height="120">
+            @if ($data->photo)
+            <img src="{{ asset('storage/'.$data->photo) }}" class=" img-thumbnail img-fluid rounded-circle" width="120" height="120">
             @else
             <img src="{{ asset('assets/img/user.png') }}" width="120" height="120" alt="" >
             @endif
@@ -27,7 +27,7 @@
           </div>
           </form>
           <div class="card-body text-center">
-            <h5>{{ $data->name }}</h5>
+            <h5>{{ $data->full_name }}</h5>
             <p class="text-muted mb-1">Alumni</p>
           </div>
         </div>
@@ -40,7 +40,7 @@
                 <p class="mb-0">Nama</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ $data->name }}</p>
+                <p class="text-muted mb-0">{{ $data->full_name }}</p>
               </div>
             </div>
             <hr />
@@ -59,7 +59,7 @@
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">
-                  {{ $data->nomer }}
+                  {{ $data->mobile_phone }}
                   <button class="btn btn-sm text-white ms-2" data-bs-toggle="modal" data-bs-target="#exampleModalNomor"type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square text-primary" viewBox="0 0 16 16">
                       <path
@@ -77,7 +77,7 @@
                 <p class="mb-0">Jurusan</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ $data->jurusan->nama_jurusan }}</p>
+                <p class="text-muted mb-0">{{ $data->major->name_major}}</p>
               </div>
             </div>
             <hr />
@@ -86,7 +86,7 @@
                 <p class="mb-0">Tahun Lulus</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ $data->tahun_lulus }}</p>
+                <p class="text-muted mb-0">{{ $data->end_date }}</p>
               </div>
             </div>
           </div>
@@ -151,7 +151,7 @@
       <form action="{{ route('updateNomor') }}" method="post" >
         @csrf
       <div class="modal-body">
-          <input type="number" name="nomer" class="form-control" placeholder="{{ $data->nomer }}" value="{{ $data->nomer }}"/>
+          <input type="number" name="mobile_phone" class="form-control" placeholder="{{ $data->mobile_phone }}" value="{{ $data->mobile_phone }}"/>
       </div>
       <div class="modal-footer">
         <button class="w-3 btn btn-sm text-white shadow"style="background-color: #5F9DF7" type="submit">Simpan</button>

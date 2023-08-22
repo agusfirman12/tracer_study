@@ -3,6 +3,10 @@
 @section('container')
 <div class="container">
     <div class="row justify-content-between mt-3">
+        <div class="box-header with-border">
+            <h3 class="box-title">Data Soal</h3>
+                <a href="{{ route('tambah-soal') }}" style=" float:right;" type="button" class="btn btn-rounded btn-success mb-5">Tambah Soal</a>
+          </div>
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Daftar Pertanyaan Tracer Study</div>            

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class alumni extends Model
+class student extends Model
 {
     use HasFactory;
     public function tracer_answer()
@@ -13,8 +13,8 @@ class alumni extends Model
         return $this->hasOne(Tracer_answer::class);
     }
 
-    public function jurusan()
+    public function major()
     {
-        return $this->belongsTo(Jurusan::class);
+        return $this->belongsTo(major::class);
     }
 }

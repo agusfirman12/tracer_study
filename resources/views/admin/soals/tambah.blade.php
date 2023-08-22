@@ -45,7 +45,7 @@
                             <input type="text" id="answer4" class="form-control" name="answer4" required value="">
                         </div>
 
-                        <button type="submit" class="btn btn-primary mt-3">Tambah Pertanyaan</button>
+                        <button type="submit" class="btn btn-success mt-3">Tambah Pertanyaan</button>
                     </form>
                 </div>
             </div>

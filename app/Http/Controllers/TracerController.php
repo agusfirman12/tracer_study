@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\alumni;
+use App\Models\student;
 use App\Models\bankSoal;
 use Illuminate\Http\Request;
 use App\Models\Tracer_answer;
@@ -16,7 +16,7 @@ class TracerController extends Controller
         if ($session == null) {
             return redirect()->route('landing');
         }
-        $data = alumni::where('id',$session->id)->first();
+        $data = student::where('id',$session->id)->first();
         return view('profileView', ['data' => $data]);
     }
 
@@ -27,9 +27,9 @@ class TracerController extends Controller
         ]);
         $key = $request->session()->get('userId');
         if ($key == !null) {
-            $path = $request->file('image')->store('img_alumni');
-            $modal =  alumni::where('id', $key->id)->first();
-            $modal->foto =  $path;
+            $path = $request->file('image')->store('img_student');
+            $modal = student::where('id', $key->id)->first();
+            $modal->photo =  $path;
             $modal->save();
 
             return redirect()->route('profile')->with('success', 'new image has been added!!');
@@ -41,11 +41,11 @@ class TracerController extends Controller
     public function updateNomor(Request $request)
     {
         $request->validate([
-            'nomer' => 'required'
+            'mobile_phone' => 'required'
         ]);
         $key = $request->session()->get('userId');
-        $modal =  alumni::where('id', $key->id)->first();
-        $modal->nomer = $request->nomer;
+        $modal = student::where('id', $key->id)->first();
+        $modal->mobile_phone = $request->mobile_phone;
         $modal->save();
         
         return redirect()->route('profile')->with('success', 'new image has been added!!');
@@ -76,24 +76,24 @@ class TracerController extends Controller
         ]);
         $request->session()->put('status',$request->status);
 
-        if(Tracer_answer::where('alumni_id',$data->id)->first() == !null){
-            $answer = Tracer_answer::where('alumni_id', $data->id)->first();
+        if(Tracer_answer::where('student_id',$data->id)->first() == !null){
+            $answer = Tracer_answer::where('student_id', $data->id)->first();
             $answer->status = $request->status;
             $answer->save();
 
-            $data = alumni::where('id', $data->id)->first();
+            $data = student::where('id', $data->id)->first();
             $data->tracer_answer_id = $answer->id;
             $data->save();
 
             return redirect()->route('viewSoal',['number' => 1]);
-        }else if (Tracer_answer::where('alumni_id', $data->id)->first() == null) {
+        }else if (Tracer_answer::where('student_id', $data->id)->first() == null) {
             $answer = new Tracer_answer();
-            $answer->alumni_id = $data->id;
+            $answer->student_id = $data->id;
             $answer->nisn = $data->nisn;
             $answer->status = $request->status;
             $answer->save();
 
-            $data = alumni::where('id', $data->id)->first();
+            $data = student::where('id', $data->id)->first();
             $data->tracer_answer_id = $answer->id;
             $data->save();
 
@@ -141,7 +141,7 @@ class TracerController extends Controller
         $answer = [$id_soal => $request->answer];
 
         $data = $request->session()->get('userId');
-        Tracer_answer::where('alumni_id',$data->id)->update($answer);
+        Tracer_answer::where('student_id',$data->id)->update($answer);
 
 
         return redirect(route('viewSoal',['number' => $number]));
@@ -159,7 +159,7 @@ class TracerController extends Controller
             'pengerjaan' => 'required'
         ]);
 
-        $finish = Tracer_answer::where('alumni_id',$user->id)->first();
+        $finish = Tracer_answer::where('student_id',$user->id)->first();
         $finish->pengerjaan = $request->pengerjaan;
         $finish->save();
         

@@ -56,7 +56,7 @@ class BankSoalSeeder extends Seeder
         ]);
         DB::table('bank_soals')->insert([
             "soal" => "Bekerja Sebagai Apa Anda Saat Ini ? ",
-            "type" => "karyawan",
+            "type" => "Karyawan",
             "answer1" => "Karyawan Swasta",
             "answer2" => "PNS",
             "answer3" => "Karyawan",
@@ -64,7 +64,7 @@ class BankSoalSeeder extends Seeder
         ]);
         DB::table('bank_soals')->insert([
             "soal" => "Kapan anda medapatkan pekerjaan setelah lulus ?",
-            "type" => "karyawan",
+            "type" => "Karyawan",
             "answer1" => "Tahun pertama kelulusan",
             'answer2' => "Tahun kedua setelah kelulusan",
             "answer3" => "Tahun ketiga setelah kelulusan",
@@ -73,7 +73,7 @@ class BankSoalSeeder extends Seeder
 
         DB::table('bank_soals')->insert([
             "soal" => "berapa gaji yang diterima pada saat berkerja? ",
-            "type" => "karyawan",
+            "type" => "Karyawan",
             "answer1" => "500.000-1.000.000",
             'answer2' => "1.000.000-2.500.000",
             "answer3" => "2.500.000 - 5.000.000",
@@ -81,7 +81,7 @@ class BankSoalSeeder extends Seeder
         ]);
         DB::table('bank_soals')->insert([
             "soal" => "Bidang wirausaha apa yang ada jalankan saat ini ? ",
-            "type" => "wirausaha",
+            "type" => "Wirausaha",
             "answer1" => "Bidang Jasa",
             'answer2' => "Bidang Makanan",
             "answer3" => "Bidang Retail",

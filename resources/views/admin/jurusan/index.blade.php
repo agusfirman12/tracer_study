@@ -9,14 +9,16 @@
     </div>
     <table id="table" class="table table-bordered">
       <tr>
+        <th>No</th>
         <th>Kode Jurusan</th>
         <th>Jurusan</th>
         <th class="aksi">Aksi</th>
       </tr>
-      @forelse($jurusan as $data) 
+      @forelse($major as $key => $data) 
       <tr>
-        <td>{{ $data->kode_jurusan }}</td>
-        <td>{{$data->nama_jurusan}}</td>
+        <td>{{$key + 1 }}</td>
+        <td>{{$data->code_major }}</td>
+        <td>{{$data->name_major}}</td>
         <td class="aksi">
           <a href="{{ route('ubah-jurusan',$data->id) }}" class="btn btn-info">Edit</a>
           <a href="{{ route('delete-jurusan',$data->id) }}" id="delete" class="btn btn-danger">Delete</a>

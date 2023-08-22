@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tracer_answer extends Model
 {
     use HasFactory;
-    public function alumni()
+    public function student()
     {
-        return $this->hasOne(alumni::class);
+        return $this->hasOne(student::class);
     }
 }

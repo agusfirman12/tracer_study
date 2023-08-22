@@ -29,21 +29,12 @@
                 Status Alumni
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/kondisi-alumni/Bekerja(Pegawai)">Bekerja</a></li>
-                <li><a class="dropdown-item" href="/kondisi-alumni/Berwirausaha">Wirausaha</a></li>
-                <li><a class="dropdown-item" href="/kondisi-alumni/Melanjutkan Kuliah">Kuliah</a></li>
+                <li><a class="dropdown-item" href="/kondisi-alumni/karyawan">Bekerja</a></li>
+                <li><a class="dropdown-item" href="/kondisi-alumni/wirausaha">Wirausaha</a></li>
+                <li><a class="dropdown-item" href="/kondisi-alumni/kuliah">Kuliah</a></li>
+                <li><a class="dropdown-item" href="/kondisi-alumni/belum bekerja">Belum Bekerja</a></li>
               </ul>
             </li>
-            {{-- <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Status Alumni
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('admin.alumni.status', 'bekerja') }}">Bekerja</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.alumni.status', 'wirausaha') }}">Wirausaha</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.alumni.status', 'kuliah') }}">Kuliah</a></li>
-              </ul>
-            </li> --}}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Data Alumni
@@ -51,8 +42,8 @@
               <ul class="dropdown-menu">
                 {{-- <x-data-jurusan/> --}}
                 <li><a class="dropdown-item" href="{{ route('admin.alumni.all') }}">Semua Alumni</a></li>
-                  <li><a class="dropdown-item" href="{{ route('admin.alumni.traced') }}">Alumni yang telah melakukan tracer</a></li>
-                  <li><a class="dropdown-item" href="{{ route('admin.alumni.not_traced') }}">Alumni yang belum melakukan tracer</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.alumni.traced') }}">Alumni finish tracer</a></li>
+                  <li><a class="dropdown-item" href="{{ route('admin.alumni.not_traced') }}">Alumni not finish tracer</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">

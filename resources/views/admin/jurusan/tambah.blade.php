@@ -16,14 +16,14 @@
                             <div class="form-group">
                                 <h5>Kode Jurusan <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="text" name="kode" class="form-control" required data-validation-required-message="This field is required"> </div>
+                                    <input type="text" name="code_major" class="form-control" required data-validation-required-message="This field is required"> </div>
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="form-group">
                                 <h5>Nama Jurusan<span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="text" name="jurusan" class="form-control" required data-validation-required-message="This field is required"> </div>
+                                    <input type="text" name="name_major" class="form-control" required data-validation-required-message="This field is required"> </div>
                             </div>
                         </div>
                     </div>

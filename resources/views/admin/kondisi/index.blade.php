@@ -24,6 +24,7 @@
     <div class="row table-responsive">
       <table id="table" class="table table-bordered text-center">
         <tr>
+          <th>No</th>
           <th>Nisn</th>
           <th>Nama</th>
           <th>Email</th>
@@ -31,14 +32,15 @@
           <th>Jurusan</th>
           <th>Nomor Hp</th>
         </tr>
-        @forelse($alumni as $data) 
+        @forelse($student as $key => $data) 
           <tr>
-            <td>{{$data->alumni->nisn }}</td>
-            <td>{{$data->alumni->name}}</td>
-            <td>{{$data->alumni->email}}</td>
-            <td>{{$data->alumni->tahun_lulus}}</td>
-            <td>{{ $data->alumni->jurusan->nama_jurusan }}</td>
-            <td>{{$data->alumni->nomer}}</td>
+            <td>{{ $key + 1 }}</td>
+            <td>{{$data->student->nisn }}</td>
+            <td>{{$data->student->full_name}}</td>
+            <td>{{$data->student->email}}</td>
+            <td>{{$data->student->end_date}}</td>
+            <td>{{$data->student->major->name_major }}</td>
+            <td>{{$data->student->mobile_phone}}</td>
           </tr>
         @empty
         <tr>
@@ -48,7 +50,7 @@
       </table>
     </div>
     <div class="d-flex justify-content-center" id="paginate">                        
-      {{ $alumni->links() }}
+      {{ $student->links() }}
     </div>
   </div>
 </div>

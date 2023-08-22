@@ -73,11 +73,10 @@ Route::get('/edit-soal/{id}', [AdminController::class, 'editSoal'])->name('edit-
 Route::post('/update-soal/{id}', [AdminController::class, 'updateSoal'])->name('update-soal');
 Route::get('/delete-soal/{id}', [AdminController::class, 'deleteSoal'])->name('delete-soal');
 
+// Route Melihat Alumni
 Route::get('/admin/alumni/traced', [AdminController::class, 'AlumniTraced'])->name('admin.alumni.traced');
 Route::get('/admin/alumni/not_traced',  [AdminController::class, 'AlumniNotTraced'])->name('admin.alumni.not_traced');
 Route::get('/admin/alumni/all', [AdminController::class, 'showAllAlumni'])->name('admin.alumni.all');
-
-// Route::get('/admin/alumni/status/{status}', [AdminController::class, 'showAlumniByStatus'])->name('admin.alumni.status');
 
 
 
