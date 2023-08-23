@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\bankSoal;
+
+use App\Models\trc_bankSoal;
 use Illuminate\Http\Request;
 
 class BankSoalController extends Controller
@@ -35,7 +36,7 @@ class BankSoalController extends Controller
      */
     public function store($status,$skip)
     {
-        $result = bankSoal::where('type', $status)->orderBy('id')->skip($skip)->take(1)->get();
+        $result = trc_bankSoal::where('type', $status)->orderBy('id')->skip($skip)->take(1)->get();
         return $result;
     }
 
@@ -45,7 +46,7 @@ class BankSoalController extends Controller
      * @param  \App\Models\bankSoal  $bankSoal
      * @return \Illuminate\Http\Response
      */
-    public function show(bankSoal $bankSoal)
+    public function show(trc_bankSoal $bankSoal)
     {
         //
     }
@@ -56,7 +57,7 @@ class BankSoalController extends Controller
      * @param  \App\Models\bankSoal  $bankSoal
      * @return \Illuminate\Http\Response
      */
-    public function edit(bankSoal $bankSoal)
+    public function edit(trc_bankSoal $bankSoal)
     {
         //
     }
@@ -68,7 +69,7 @@ class BankSoalController extends Controller
      * @param  \App\Models\bankSoal  $bankSoal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, bankSoal $bankSoal)
+    public function update(Request $request, trc_bankSoal $bankSoal)
     {
         //
     }
@@ -79,7 +80,7 @@ class BankSoalController extends Controller
      * @param  \App\Models\bankSoal  $bankSoal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(bankSoal $bankSoal)
+    public function destroy(trc_bankSoal $bankSoal)
     {
         //
     }

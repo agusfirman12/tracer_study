@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\major;
 use App\Models\student;
 use Illuminate\Http\Request;
-use App\Models\Tracer_answer;
+use App\Models\trc_Tracer_answer;
 
 class LoginController extends Controller
 {
@@ -46,7 +46,7 @@ class LoginController extends Controller
         //mengambil data sesion apakah yang diminta sesuai
         $key = $request->session()->get('userId');
         //kita check di database apakah ada nimnya
-        $finish =  Tracer_answer::where('student_id', $key->id)->first();
+        $finish =  trc_Tracer_answer::where('student_id', $key->id)->first();
 
         //bila mana $finis  null maka kita membuat pengimputan data baru
         if ($finish == null) {

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTracerAnswersTable extends Migration
+class CreateTrcTracerAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTracerAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::create('tracer_answers', function (Blueprint $table) {
+        Schema::create('trc__tracer__answers', function (Blueprint $table) {
             $table->id();
             $table->char('student_id', 10);
             $table->char('nisn', 20);
@@ -41,6 +41,6 @@ class CreateTracerAnswersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tracer_answers');
+        Schema::dropIfExists('trc__tracer__answers');
     }
 }

@@ -14,7 +14,7 @@ class BankSoalSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('bank_soals')->insert([
+        DB::table('trc_bank_soals')->insert([
             "soal" => "Saat Ini Anda Berkuliah Di Mana ?",
             "type" => "Kuliah",
             "answer1" => "Perguruan Tinggi Negeri",
@@ -22,7 +22,7 @@ class BankSoalSeeder extends Seeder
             "answer3" => "Sekolah Tinggi Kedinasan",
             "answer4" => "Lainya"
         ]);
-        DB::table('bank_soals')->insert([
+        DB::table('trc_bank_soals')->insert([
             "soal" => "Apa alasan Anda melanjutkan studi? ",
             "type" => "Kuliah",
             "answer1" => "Tuntutan profesi",
@@ -30,7 +30,7 @@ class BankSoalSeeder extends Seeder
             "answer3" => "Prestasi",
             "answer4" => "Belum ingin bekerja"
         ]);
-        DB::table('bank_soals')->insert([
+        DB::table('trc_bank_soals')->insert([
             "soal" => "Kapan anda melanjutkan studi setelah lulus ?",
             "type" => "Kuliah",
             "answer1" => "Tahun pertama kelulusan",
@@ -38,7 +38,7 @@ class BankSoalSeeder extends Seeder
             "answer3" => "Tahun ketiga setelah kelulusan",
             "answer4" => "Belum mendapatkan pekerjaan"
         ]);
-        DB::table('bank_soals')->insert([
+        DB::table('trc_bank_soals')->insert([
             "soal" => "Darimanakah sumber biaya studi lanjut anda?",
             "type" => "Kuliah",
             "answer1" => "Biaya sendiri",
@@ -46,7 +46,7 @@ class BankSoalSeeder extends Seeder
             "answer3" => "Beasiswa pemerintah",
             "answer4" => "Beasiswa swasta"
         ]);
-        DB::table('bank_soals')->insert([
+        DB::table('trc_bank_soals')->insert([
             "soal" => "Seberapa erat hubungan bidang studi lanjutan anda dengan kompetensi keahlian anda semasa SMK?",
             "type" => "Kuliah",
             "answer1" => "Sangat Erat",
@@ -54,7 +54,7 @@ class BankSoalSeeder extends Seeder
             "answer3" => "Kurang Erat",
             "answer4" => "Tidak Sama Sekali"
         ]);
-        DB::table('bank_soals')->insert([
+        DB::table('trc_bank_soals')->insert([
             "soal" => "Bekerja Sebagai Apa Anda Saat Ini ? ",
             "type" => "Karyawan",
             "answer1" => "Karyawan Swasta",
@@ -62,7 +62,7 @@ class BankSoalSeeder extends Seeder
             "answer3" => "Karyawan",
             "answer4" => "Lainya"
         ]);
-        DB::table('bank_soals')->insert([
+        DB::table('trc_bank_soals')->insert([
             "soal" => "Kapan anda medapatkan pekerjaan setelah lulus ?",
             "type" => "Karyawan",
             "answer1" => "Tahun pertama kelulusan",
@@ -71,7 +71,7 @@ class BankSoalSeeder extends Seeder
             "answer4" => "Belum mendapatkan perkerjaan"
         ]);
 
-        DB::table('bank_soals')->insert([
+        DB::table('trc_bank_soals')->insert([
             "soal" => "berapa gaji yang diterima pada saat berkerja? ",
             "type" => "Karyawan",
             "answer1" => "500.000-1.000.000",
@@ -79,7 +79,7 @@ class BankSoalSeeder extends Seeder
             "answer3" => "2.500.000 - 5.000.000",
             "answer4" => "lebih dari 5.000.000"
         ]);
-        DB::table('bank_soals')->insert([
+        DB::table('trc_bank_soals')->insert([
             "soal" => "Bidang wirausaha apa yang ada jalankan saat ini ? ",
             "type" => "Wirausaha",
             "answer1" => "Bidang Jasa",
@@ -88,7 +88,7 @@ class BankSoalSeeder extends Seeder
             "answer4" => "Lainya"
         ]);
 
-        DB::table('bank_soals')->insert([
+        DB::table('trc_bank_soals')->insert([
             "soal" => "kesulitan apa yang membuat anda belum bekerja ? ",
             "type" => "belum bekerja",
             "answer1" => "Sulitnya mendapatkan informasi lowongan",

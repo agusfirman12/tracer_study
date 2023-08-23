@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tracer_answer extends Model
+class trc_Tracer_Answer extends Model
 {
     use HasFactory;
     public function student()

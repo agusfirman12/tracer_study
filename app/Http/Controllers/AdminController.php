@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\major;
 use App\Models\student;
-use App\Models\bankSoal;
+use App\Models\trc_bankSoal;
 use Illuminate\Http\Request;
-use App\Models\Tracer_answer;
+use App\Models\trc_Tracer_Answer;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -44,10 +44,10 @@ class AdminController extends Controller
     {
         $viewStudent = student::latest()->paginate(5);
         $student = student::count();
-        $bekerja = Tracer_answer::where('status', 'karyawan')->count();
-        $belumBekerja = Tracer_answer::where('status', 'belum bekerja')->count();
-        $wirausaha = Tracer_answer::where('status', 'wirausaha')->count();
-        $kuliah = Tracer_answer::where('status', 'kuliah')->count();
+        $bekerja = trc_Tracer_Answer::where('status', 'karyawan')->count();
+        $belumBekerja = trc_Tracer_answer::where('status', 'belum bekerja')->count();
+        $wirausaha = trc_Tracer_answer::where('status', 'wirausaha')->count();
+        $kuliah = trc_Tracer_answer::where('status', 'kuliah')->count();
 
         return view('admin.index', [
             'viewStudent' => $viewStudent,
@@ -62,7 +62,7 @@ class AdminController extends Controller
 
     public function kondisiAlumni($kondisi)
     {
-        $student = Tracer_answer::where('status', $kondisi)->paginate(10);
+        $student = trc_Tracer_answer::where('status', $kondisi)->paginate(10);
         return view('admin.kondisi.index', ['student' => $student, 'kondisi' => $kondisi]);
     }
 
@@ -160,7 +160,7 @@ class AdminController extends Controller
 
     public function lihatSoal()
     {
-        $soals =bankSoal::all(); // Mengambil semua pertanyaan dari database
+        $soals =trc_bankSoal::all(); // Mengambil semua pertanyaan dari database
         // dd($soals);
         return view('admin.soals.view', ['soals' => $soals]);
     }
@@ -182,7 +182,7 @@ class AdminController extends Controller
         ]);
 
         // Membuat objek pertanyaan baru
-        $soals = new bankSoal();
+        $soals = new trc_bankSoal();
         $soals->soal = $request->input('soal');
         $soals->type = $request->input('type');
         $soals->answer1 = $request->input('answer1');
@@ -199,7 +199,7 @@ class AdminController extends Controller
 
     public function editSoal($id)
     {
-        $soals = bankSoal::findOrFail($id);
+        $soals = trc_bankSoal::findOrFail($id);
         return view('admin.soals.edit', ['soal' => $soals]);
     }
 
@@ -217,7 +217,7 @@ class AdminController extends Controller
         ]);
 
         // Membuat objek pertanyaan baru
-        $soals = bankSoal::findOrFail($id);
+        $soals = trc_bankSoal::findOrFail($id);
         $soals->soal = $request->input('soal');
         $soals->type = $request->input('type');
         $soals->answer1 = $request->input('answer1');
@@ -234,7 +234,7 @@ class AdminController extends Controller
 
     public function deleteSoal($id)
     {
-        $soals = bankSoal::findOrFail($id);
+        $soals = trc_bankSoal::findOrFail($id);
         $soals->delete();
 
         return redirect()->route('lihat-soal')
@@ -243,20 +243,20 @@ class AdminController extends Controller
 
     public function alumniTraced()
     {
-        $alumniTraced = student::whereNotNull('tracer_answer_id')->get();
+        $alumniTraced = student::whereNotNull('trc_tracer_answer_id')->get();
         return view('admin.alumni.alumni_traced', ['alumniTraced' => $alumniTraced]);
     }
 
     public function alumniNotTraced()
     {
-        $alumniNotTraced = student::whereNull('tracer_answer_id')->get();
+        $alumniNotTraced = student::whereNull('trc_tracer_answer_id')->get();
         return view('admin.alumni.alumni_not_traced', ['alumniNotTraced' => $alumniNotTraced]);
     }
 
     public function showAllAlumni()
     {
-        $alumniTraced = student::whereNotNull('tracer_answer_id')->get();
-        $alumniNotTraced = student::whereNull('tracer_answer_id')->get();
+        $alumniTraced = student::whereNotNull('trc_tracer_answer_id')->get();
+        $alumniNotTraced = student::whereNull('trc_tracer_answer_id')->get();
 
         return view('admin.alumni.all_alumni', [
             'alumniTraced' => $alumniTraced,

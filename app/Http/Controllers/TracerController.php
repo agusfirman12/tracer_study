@@ -6,6 +6,8 @@ use App\Models\student;
 use App\Models\bankSoal;
 use Illuminate\Http\Request;
 use App\Models\Tracer_answer;
+use App\Models\trc_bankSoal;
+use App\Models\trc_Tracer_Answer;
 use Illuminate\Support\Facades\Session;
 
 class TracerController extends Controller
@@ -76,8 +78,8 @@ class TracerController extends Controller
         ]);
         $request->session()->put('status',$request->status);
 
-        if(Tracer_answer::where('student_id',$data->id)->first() == !null){
-            $answer = Tracer_answer::where('student_id', $data->id)->first();
+        if(trc_Tracer_answer::where('student_id',$data->id)->first() == !null){
+            $answer = trc_Tracer_Answer::where('student_id', $data->id)->first();
             $answer->status = $request->status;
             $answer->save();
 
@@ -86,8 +88,8 @@ class TracerController extends Controller
             $data->save();
 
             return redirect()->route('viewSoal',['number' => 1]);
-        }else if (Tracer_answer::where('student_id', $data->id)->first() == null) {
-            $answer = new Tracer_answer();
+        }else if (trc_Tracer_answer::where('student_id', $data->id)->first() == null) {
+            $answer = new trc_Tracer_answer();
             $answer->student_id = $data->id;
             $answer->nisn = $data->nisn;
             $answer->status = $request->status;
@@ -120,7 +122,7 @@ class TracerController extends Controller
             $request->session()->put('id_soal',$idSoal);
         }
 
-        if ($soalNumber-1 > bankSoal::where('type',$status)->count()) {
+        if ($soalNumber-1 > trc_bankSoal::where('type',$status)->count()) {
             return redirect()->route('finish');
         }
         return view('soal/soal',['data' => $resultSoal,'number' => $soalNumber,'soal' =>$data]);
@@ -141,7 +143,7 @@ class TracerController extends Controller
         $answer = [$id_soal => $request->answer];
 
         $data = $request->session()->get('userId');
-        Tracer_answer::where('student_id',$data->id)->update($answer);
+        trc_Tracer_answer::where('student_id',$data->id)->update($answer);
 
 
         return redirect(route('viewSoal',['number' => $number]));
@@ -159,7 +161,7 @@ class TracerController extends Controller
             'pengerjaan' => 'required'
         ]);
 
-        $finish = Tracer_answer::where('student_id',$user->id)->first();
+        $finish = trc_Tracer_answer::where('student_id',$user->id)->first();
         $finish->pengerjaan = $request->pengerjaan;
         $finish->save();
         

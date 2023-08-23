@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBankSoalsTable extends Migration
+class CreateTrcBankSoalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBankSoalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bank_soals', function (Blueprint $table) {
+        Schema::create('trc_bank_soals', function (Blueprint $table) {
             $table->id();
             $table->string('soal')->nullable();
             $table->string('type')->nullable();
@@ -32,6 +32,6 @@ class CreateBankSoalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bank_soals');
+        Schema::dropIfExists('trc_bank_soals');
     }
 }

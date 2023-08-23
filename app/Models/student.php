@@ -10,7 +10,7 @@ class student extends Model
     use HasFactory;
     public function tracer_answer()
     {
-        return $this->hasOne(Tracer_answer::class);
+        return $this->hasOne(trc_Tracer_answer::class);
     }
 
     public function major()
